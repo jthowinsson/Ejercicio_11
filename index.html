@@ -72,6 +72,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="index_files/libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
 <script src="index_files/libs/pagedtable-1.1/js/pagedtable.js"></script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -85,7 +114,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#cargar-datos" id="toc-cargar-datos" class="nav-link active" data-scroll-target="#cargar-datos"><span class="header-section-number">1</span> Cargar Datos</a>
   <ul class="collapse">
-  <li><a href="#paso-1-carga-de-los-datos-y-exploración-inicial" id="toc-paso-1-carga-de-los-datos-y-exploración-inicial" class="nav-link" data-scroll-target="#paso-1-carga-de-los-datos-y-exploración-inicial"><span class="header-section-number">1.1</span> Paso 1: Carga de los datos y exploración inicial</a></li>
+  <li><a href="#paso-1-carga-de-los-datos-y-exploración-inicial" id="toc-paso-1-carga-de-los-datos-y-exploración-inicial" class="nav-link" data-scroll-target="#paso-1-carga-de-los-datos-y-exploración-inicial"><span class="header-section-number">1.1</span> Paso 1: Carga de los datos y exploración inicial</a>
+  <ul class="collapse">
+  <li><a href="#explicación" id="toc-explicación" class="nav-link" data-scroll-target="#explicación"><span class="header-section-number">1.1.1</span> Explicación:</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -169,6 +201,14 @@ Barranquilla-Colombia.
  $ GLEASON: num [1:380] 6 7 6 7 6 8 7 7 7 6 ...</code></pre>
 </div>
 </div>
+<section id="explicación" class="level3" data-number="1.1.1">
+<h3 data-number="1.1.1" class="anchored" data-anchor-id="explicación"><span class="header-section-number">1.1.1</span> Explicación:</h3>
+<ul>
+<li><p>Primero cargamos los datos del paquete lsm y usamos attach() para acceder directamente a las variables.</p></li>
+<li><p>La función str() nos muestra la estructura de los datos: tipos de variables, dimensiones y primeras observaciones.</p></li>
+<li><p>Esto nos permite verificar que <span class="math inline">\(CAPSULE\)</span> sea binaria (0/1) y <span class="math inline">\(VOL\)</span> sea numérica.</p></li>
+</ul>
+</section>
 </section>
 </section>
 

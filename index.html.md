@@ -84,3 +84,12 @@ tibble [380 × 9] (S3: tbl_df/tbl/data.frame)
 
 :::
 :::
+
+
+### Explicación:
+
+-   Primero cargamos los datos del paquete lsm y usamos attach() para acceder directamente a las variables.
+
+-   La función str() nos muestra la estructura de los datos: tipos de variables, dimensiones y primeras observaciones.
+
+-   Esto nos permite verificar que $CAPSULE$ sea binaria (0/1) y $VOL$ sea numérica.
