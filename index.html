@@ -118,6 +118,28 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#explicación" id="toc-explicación" class="nav-link" data-scroll-target="#explicación"><span class="header-section-number">1.1.1</span> Explicación:</a></li>
   </ul></li>
+  <li><a href="#paso-2-examinar-las-variables-de-interés" id="toc-paso-2-examinar-las-variables-de-interés" class="nav-link" data-scroll-target="#paso-2-examinar-las-variables-de-interés"><span class="header-section-number">1.2</span> Paso 2: Examinar las variables de interés</a>
+  <ul class="collapse">
+  <li><a href="#explicación-1" id="toc-explicación-1" class="nav-link" data-scroll-target="#explicación-1"><span class="header-section-number">1.2.1</span> Explicación</a></li>
+  </ul></li>
+  <li><a href="#paso-3-ajustar-el-modelo-de-regresión-logística" id="toc-paso-3-ajustar-el-modelo-de-regresión-logística" class="nav-link" data-scroll-target="#paso-3-ajustar-el-modelo-de-regresión-logística"><span class="header-section-number">1.3</span> Paso 3: Ajustar el modelo de regresión logística</a>
+  <ul class="collapse">
+  <li><a href="#explicación-2" id="toc-explicación-2" class="nav-link" data-scroll-target="#explicación-2"><span class="header-section-number">1.3.1</span> Explicación</a></li>
+  </ul></li>
+  <li><a href="#paso-4-interpretar-los-coeficientes-y-odds-ratios" id="toc-paso-4-interpretar-los-coeficientes-y-odds-ratios" class="nav-link" data-scroll-target="#paso-4-interpretar-los-coeficientes-y-odds-ratios"><span class="header-section-number">1.4</span> Paso 4: Interpretar los coeficientes y odds ratios</a>
+  <ul class="collapse">
+  <li><a href="#explicación-3" id="toc-explicación-3" class="nav-link" data-scroll-target="#explicación-3"><span class="header-section-number">1.4.1</span> Explicación</a></li>
+  </ul></li>
+  <li><a href="#paso-5-evaluar-la-bondad-de-ajuste-del-modelo" id="toc-paso-5-evaluar-la-bondad-de-ajuste-del-modelo" class="nav-link" data-scroll-target="#paso-5-evaluar-la-bondad-de-ajuste-del-modelo"><span class="header-section-number">1.5</span> Paso 5: Evaluar la bondad de ajuste del modelo</a>
+  <ul class="collapse">
+  <li><a href="#explicación-4" id="toc-explicación-4" class="nav-link" data-scroll-target="#explicación-4"><span class="header-section-number">1.5.1</span> Explicación</a></li>
+  </ul></li>
+  <li><a href="#paso-6-analizar-la-capacidad-predictiva-del-modelo" id="toc-paso-6-analizar-la-capacidad-predictiva-del-modelo" class="nav-link" data-scroll-target="#paso-6-analizar-la-capacidad-predictiva-del-modelo"><span class="header-section-number">1.6</span> Paso 6: Analizar la capacidad predictiva del modelo</a></li>
+  <li><a href="#paso-7-clasificación-y-evaluación-del-rendimiento" id="toc-paso-7-clasificación-y-evaluación-del-rendimiento" class="nav-link" data-scroll-target="#paso-7-clasificación-y-evaluación-del-rendimiento"><span class="header-section-number">1.7</span> Paso 7: Clasificación y evaluación del rendimiento</a></li>
+  <li><a href="#paso-8-visualización-gráfica-del-modelo" id="toc-paso-8-visualización-gráfica-del-modelo" class="nav-link" data-scroll-target="#paso-8-visualización-gráfica-del-modelo"><span class="header-section-number">1.8</span> Paso 8: Visualización gráfica del modelo</a>
+  <ul class="collapse">
+  <li><a href="#explicación-5" id="toc-explicación-5" class="nav-link" data-scroll-target="#explicación-5"><span class="header-section-number">1.8.1</span> Explicación</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -207,6 +229,379 @@ Barranquilla-Colombia.
 <li><p>Primero cargamos los datos del paquete lsm y usamos attach() para acceder directamente a las variables.</p></li>
 <li><p>La función str() nos muestra la estructura de los datos: tipos de variables, dimensiones y primeras observaciones.</p></li>
 <li><p>Esto nos permite verificar que <span class="math inline">\(CAPSULE\)</span> sea binaria (0/1) y <span class="math inline">\(VOL\)</span> sea numérica.</p></li>
+</ul>
+</section>
+</section>
+<section id="paso-2-examinar-las-variables-de-interés" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="paso-2-examinar-las-variables-de-interés"><span class="header-section-number">1.2</span> Paso 2: Examinar las variables de interés</h2>
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Resumen estadístico</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(CAPSULE)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.0000  0.0000  0.0000  0.4026  1.0000  1.0000 </code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(VOL)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+   0.00    0.00   14.30   15.85   26.50   97.60       1 </code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Tabla de frecuencia para CAPSULE</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(CAPSULE)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>CAPSULE
+  0   1 
+227 153 </code></pre>
+</div>
+</div>
+<section id="explicación-1" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="explicación-1"><span class="header-section-number">1.2.1</span> Explicación</h3>
+<ul>
+<li><p>Examinamos las estadísticas descriptivas de nuestras variables.</p></li>
+<li><p>Para CAPSULE (variable dependiente), verificamos la distribución de 0s y 1s para ver si hay desbalance.</p></li>
+<li><p>Para VOL (variable independiente), observamos su rango, media y distribución.</p></li>
+<li><p>Esto nos ayuda a entender los datos antes de modelarlos.</p></li>
+</ul>
+</section>
+</section>
+<section id="paso-3-ajustar-el-modelo-de-regresión-logística" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="paso-3-ajustar-el-modelo-de-regresión-logística"><span class="header-section-number">1.3</span> Paso 3: Ajustar el modelo de regresión logística</h2>
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Ajustar modelo de regresión logística</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>modelo <span class="ot">&lt;-</span> <span class="fu">glm</span>(CAPSULE <span class="sc">~</span> VOL, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"logit"</span>), <span class="at">data =</span> datos)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Resumen del modelo</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modelo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+glm(formula = CAPSULE ~ VOL, family = binomial(link = "logit"), 
+    data = datos)
+
+Coefficients:
+             Estimate Std. Error z value Pr(&gt;|z|)  
+(Intercept) -0.178542   0.138541  -1.289   0.1975  
+VOL         -0.013817   0.006116  -2.259   0.0239 *
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 511.26  on 378  degrees of freedom
+Residual deviance: 505.86  on 377  degrees of freedom
+  (1 observation deleted due to missingness)
+AIC: 509.86
+
+Number of Fisher Scoring iterations: 4</code></pre>
+</div>
+</div>
+<section id="explicación-2" class="level3" data-number="1.3.1">
+<h3 data-number="1.3.1" class="anchored" data-anchor-id="explicación-2"><span class="header-section-number">1.3.1</span> Explicación</h3>
+<ul>
+<li><p>Usamos la función <em>glm()</em> para ajustar el modelo logístico, que es apropiado cuando nuestra variable dependiente es binaria.</p></li>
+<li><p>Especificamos <em>family = binomial(link = “logit”)</em> para indicar que es una regresión logística.</p></li>
+<li><p>El resumen del modelo muestra:</p>
+<ul>
+<li><p>Coeficientes estimados (intercepto y pendiente para VOL)</p></li>
+<li><p>Error estándar de los coeficientes</p></li>
+<li><p>Estadístico z y valor p para evaluar significancia</p></li>
+<li><p>Devianza nula y residual para evaluar el ajuste global</p></li>
+<li><p>AIC (Criterio de Información de Akaike)</p></li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="paso-4-interpretar-los-coeficientes-y-odds-ratios" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="paso-4-interpretar-los-coeficientes-y-odds-ratios"><span class="header-section-number">1.4</span> Paso 4: Interpretar los coeficientes y odds ratios</h2>
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Odds ratios con intervalos de confianza</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">coef</span>(modelo))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>(Intercept)         VOL 
+  0.8364889   0.9862779 </code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">exp</span>(<span class="fu">cbind</span>(<span class="at">OR =</span> <span class="fu">coef</span>(modelo), <span class="fu">confint</span>(modelo)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>                   OR     2.5 %    97.5 %
+(Intercept) 0.8364889 0.6370444 1.0973512
+VOL         0.9862779 0.9741764 0.9978833</code></pre>
+</div>
+</div>
+<section id="explicación-3" class="level3" data-number="1.4.1">
+<h3 data-number="1.4.1" class="anchored" data-anchor-id="explicación-3"><span class="header-section-number">1.4.1</span> Explicación</h3>
+<ul>
+<li>En regresión logística, los coeficientes están en escala logarítmica, por lo que aplicamos la función exponencial para obtener los odds ratios.</li>
+<li>El odds ratio para VOL indica cuánto cambian las probabilidades de CAPSULE=1 por cada unidad de aumento en VOL.</li>
+<li>Si OR &gt; 1: aumenta la probabilidad de CAPSULE=1 cuando aumenta VOL.</li>
+<li>Si OR &lt; 1: disminuye la probabilidad de CAPSULE=1 cuando aumenta VOL.</li>
+<li>Los intervalos de confianza nos indican la precisión de la estimación.</li>
+</ul>
+</section>
+</section>
+<section id="paso-5-evaluar-la-bondad-de-ajuste-del-modelo" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="paso-5-evaluar-la-bondad-de-ajuste-del-modelo"><span class="header-section-number">1.5</span> Paso 5: Evaluar la bondad de ajuste del modelo</h2>
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Instalar y cargar ResourceSelection si no está instalado</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">"ResourceSelection"</span>)) {</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">"ResourceSelection"</span>)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(ResourceSelection)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(ResourceSelection)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Este código:</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co"># - Se asegura de que no haya errores de longitud.</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co"># - Ejecuta el test de Hosmer-Lemeshow correctamente.</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="co"># - Muestra los valores clave de manera clara.</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Eliminar casos con NA en las variables relevantes</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>datos_completos <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(datos[, <span class="fu">c</span>(<span class="st">"CAPSULE"</span>, <span class="st">"VOL"</span>)])</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajustar el modelo con los datos completos</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>modelo <span class="ot">&lt;-</span> <span class="fu">glm</span>(CAPSULE <span class="sc">~</span> VOL, <span class="at">family =</span> binomial, <span class="at">data =</span> datos_completos)</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Test de Hosmer-Lemeshow (g=10 grupos predichos)</span></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>hoslem <span class="ot">&lt;-</span> <span class="fu">hoslem.test</span>(datos_completos<span class="sc">$</span>CAPSULE, <span class="fu">fitted</span>(modelo), <span class="at">g =</span> <span class="dv">10</span>)</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(hoslem)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Hosmer and Lemeshow goodness of fit (GOF) test
+
+data:  datos_completos$CAPSULE, fitted(modelo)
+X-squared = 5.8677, df = 4, p-value = 0.2092</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Devianza, grados de libertad y p-valor</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>devianza <span class="ot">&lt;-</span> <span class="fu">with</span>(modelo, null.deviance <span class="sc">-</span> deviance)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>gl <span class="ot">&lt;-</span> <span class="fu">with</span>(modelo, df.null <span class="sc">-</span> df.residual)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>pvalor <span class="ot">&lt;-</span> <span class="fu">with</span>(modelo, <span class="fu">pchisq</span>(devianza, gl, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>))</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Mostrar resultados con nombres</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">Estadístico Chi-cuadrado:"</span>, <span class="fu">round</span>(devianza, <span class="dv">4</span>),</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"</span><span class="sc">\n</span><span class="st">Grados de libertad:"</span>, gl,</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"</span><span class="sc">\n</span><span class="st">Valor-p:"</span>, <span class="fu">round</span>(pvalor, <span class="dv">4</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Estadístico Chi-cuadrado: 5.399 
+Grados de libertad: 1 
+Valor-p: 0.0201 </code></pre>
+</div>
+</div>
+<section id="explicación-4" class="level3" data-number="1.5.1">
+<h3 data-number="1.5.1" class="anchored" data-anchor-id="explicación-4"><span class="header-section-number">1.5.1</span> Explicación</h3>
+<ul>
+<li>El test de Hosmer-Lemeshow evalúa si las probabilidades predichas concuerdan con las observadas.</li>
+<li>Un valor p &gt; 0.05 sugiere un buen ajuste (no hay diferencias significativas entre valores observados y predichos).</li>
+<li>La diferencia de devianza (null.deviance - deviance) sigue una distribución Chi-cuadrado.</li>
+<li>El valor p asociado a esta diferencia nos indica si nuestro modelo es significativamente mejor que un modelo nulo (sin predictores).</li>
+</ul>
+</section>
+</section>
+<section id="paso-6-analizar-la-capacidad-predictiva-del-modelo" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="paso-6-analizar-la-capacidad-predictiva-del-modelo"><span class="header-section-number">1.6</span> Paso 6: Analizar la capacidad predictiva del modelo</h2>
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Instalar y cargar ResourceSelection si no está instalado</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(<span class="st">"pROC"</span>)) {</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">"pROC"</span>)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(pROC)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(pROC)</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Filtrar los datos sin valores perdidos en las variables del modelo</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>datos_completos <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(datos[, <span class="fu">c</span>(<span class="st">"CAPSULE"</span>, <span class="st">"VOL"</span>)])</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajustar el modelo logístico con los datos completos</span></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>modelo <span class="ot">&lt;-</span> <span class="fu">glm</span>(CAPSULE <span class="sc">~</span> VOL, <span class="at">family =</span> binomial, <span class="at">data =</span> datos_completos)</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtener probabilidades predichas</span></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>prob_pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(modelo, <span class="at">type =</span> <span class="st">"response"</span>)</span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular la curva ROC usando CAPSULE y las probabilidades predichas</span></span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>curva_roc <span class="ot">&lt;-</span> <span class="fu">roc</span>(datos_completos<span class="sc">$</span>CAPSULE, prob_pred)</span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Graficar la curva ROC</span></span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(curva_roc, <span class="at">main =</span> <span class="st">"Curva ROC - Modelo logístico"</span>, <span class="at">col =</span> <span class="st">"blue"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/curva%20ROC%20y%20AUC-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular y mostrar el AUC (área bajo la curva)</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">auc</span>(curva_roc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Area under the curve: 0.5543</code></pre>
+</div>
+</div>
+</section>
+<section id="paso-7-clasificación-y-evaluación-del-rendimiento" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="paso-7-clasificación-y-evaluación-del-rendimiento"><span class="header-section-number">1.7</span> Paso 7: Clasificación y evaluación del rendimiento</h2>
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Instalar y cargar paquetes necesarios</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>paquetes_necesarios <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"knitr"</span>)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (p <span class="cf">in</span> paquetes_necesarios) {</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(p, <span class="at">character.only =</span> <span class="cn">TRUE</span>)) {</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">install.packages</span>(p)</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">library</span>(p, <span class="at">character.only =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">library</span>(p, <span class="at">character.only =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Asegurar que se usen los datos completos</span></span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>datos_completos <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(datos[, <span class="fu">c</span>(<span class="st">"CAPSULE"</span>, <span class="st">"VOL"</span>)])</span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajustar modelo de regresión logística</span></span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>modelo <span class="ot">&lt;-</span> <span class="fu">glm</span>(CAPSULE <span class="sc">~</span> VOL, <span class="at">family =</span> binomial, <span class="at">data =</span> datos_completos)</span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Obtener probabilidades predichas</span></span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>prob_pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(modelo, <span class="at">type =</span> <span class="st">"response"</span>)</span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Clasificación con umbral de 0.5</span></span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a>pred_class <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(prob_pred <span class="sc">&gt;</span> <span class="fl">0.5</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Convertir a factores con niveles definidos</span></span>
+<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a>real <span class="ot">&lt;-</span> <span class="fu">factor</span>(datos_completos<span class="sc">$</span>CAPSULE, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>))</span>
+<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a>pred <span class="ot">&lt;-</span> <span class="fu">factor</span>(pred_class, <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>))</span>
+<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-28"><a href="#cb22-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Tabla de clasificación</span></span>
+<span id="cb22-29"><a href="#cb22-29" aria-hidden="true" tabindex="-1"></a>tabla <span class="ot">&lt;-</span> <span class="fu">table</span>(<span class="at">Real =</span> real, <span class="at">Predicho =</span> pred)</span>
+<span id="cb22-30"><a href="#cb22-30" aria-hidden="true" tabindex="-1"></a>tabla_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame.matrix</span>(tabla)</span>
+<span id="cb22-31"><a href="#cb22-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-32"><a href="#cb22-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Mostrar tabla con formato</span></span>
+<span id="cb22-33"><a href="#cb22-33" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(tabla_df, <span class="at">caption =</span> <span class="st">"Matriz de Confusión"</span>, <span class="at">align =</span> <span class="st">"c"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Matriz de Confusión</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;">0</th>
+<th style="text-align: center;">1</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: center;">226</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: center;">153</td>
+<td style="text-align: center;">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular métricas</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>accuracy <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">diag</span>(tabla)) <span class="sc">/</span> <span class="fu">sum</span>(tabla)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>sensitivity <span class="ot">&lt;-</span> <span class="cf">if</span> (tabla[<span class="dv">2</span>,<span class="dv">2</span>] <span class="sc">+</span> tabla[<span class="dv">2</span>,<span class="dv">1</span>] <span class="sc">&gt;</span> <span class="dv">0</span>) tabla[<span class="dv">2</span>,<span class="dv">2</span>] <span class="sc">/</span> <span class="fu">sum</span>(tabla[<span class="dv">2</span>,]) <span class="cf">else</span> <span class="cn">NA</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>specificity <span class="ot">&lt;-</span> <span class="cf">if</span> (tabla[<span class="dv">1</span>,<span class="dv">1</span>] <span class="sc">+</span> tabla[<span class="dv">1</span>,<span class="dv">2</span>] <span class="sc">&gt;</span> <span class="dv">0</span>) tabla[<span class="dv">1</span>,<span class="dv">1</span>] <span class="sc">/</span> <span class="fu">sum</span>(tabla[<span class="dv">1</span>,]) <span class="cf">else</span> <span class="cn">NA</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Crear tabla de métricas</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>metricas <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  Métrica <span class="ot">=</span> <span class="fu">c</span>(<span class="st">"Exactitud (Accuracy)"</span>, <span class="st">"Sensibilidad (Recall)"</span>, <span class="st">"Especificidad"</span>),</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">Valor =</span> <span class="fu">c</span>(<span class="fu">round</span>(accuracy, <span class="dv">3</span>), <span class="fu">round</span>(sensitivity, <span class="dv">3</span>), <span class="fu">round</span>(specificity, <span class="dv">3</span>))</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Mostrar métricas</span></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(metricas, <span class="at">caption =</span> <span class="st">"Métricas del Modelo"</span>, <span class="at">align =</span> <span class="st">"c"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Métricas del Modelo</caption>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Métrica</th>
+<th style="text-align: center;">Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Exactitud (Accuracy)</td>
+<td style="text-align: center;">0.596</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Sensibilidad (Recall)</td>
+<td style="text-align: center;">0.000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Especificidad</td>
+<td style="text-align: center;">1.000</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="paso-8-visualización-gráfica-del-modelo" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="paso-8-visualización-gráfica-del-modelo"><span class="header-section-number">1.8</span> Paso 8: Visualización gráfica del modelo</h2>
+<div class="cell" data-layout-align="center">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico de la regresión logística</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">x =</span> VOL, <span class="at">y =</span> CAPSULE)) <span class="sc">+</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_smooth</span>(<span class="at">method =</span> <span class="st">"glm"</span>, <span class="at">method.args =</span> <span class="fu">list</span>(<span class="at">family =</span> binomial)) <span class="sc">+</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Regresión logística: CAPSULE ~ VOL"</span>,</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Volumen (VOL)"</span>,</span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Probabilidad de CAPSULE = 1"</span>) <span class="sc">+</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="index_files/figure-html/Visualización-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="explicación-5" class="level3" data-number="1.8.1">
+<h3 data-number="1.8.1" class="anchored" data-anchor-id="explicación-5"><span class="header-section-number">1.8.1</span> Explicación</h3>
+<ul>
+<li>Este gráfico muestra la relación entre VOL y la probabilidad de CAPSULE=1.</li>
+<li>Los puntos representan los datos observados (0 y 1).</li>
+<li>La curva azul es la función logística ajustada, mostrando cómo cambia la probabilidad predicha de CAPSULE=1 a medida que aumenta VOL.</li>
+<li>La zona sombreada representa el intervalo de confianza del 95%.</li>
+<li>Este gráfico nos permite visualizar fácilmente si existe una relación positiva o negativa entre VOL y la probabilidad de CAPSULE=1.</li>
 </ul>
 </section>
 </section>
