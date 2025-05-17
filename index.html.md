@@ -47,45 +47,40 @@ format:
 :::
 
 
-## Quarto
+# Cargar Datos
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
-
-## Running Code
-
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+## Paso 1: Carga de los datos y exploración inicial
 
 
 ::: {.cell layout-align="center"}
 
 ```{.r .cell-code}
-1 + 1
+# Cargar paquete necesario
+library(lsm)
+
+# Cargar datos
+datos <- pros
+attach(datos)
+
+# Visualizar estructura de los datos
+str(datos)
 ```
 
 ::: {.cell-output .cell-output-stdout}
 
 ```
-[1] 2
+tibble [380 × 9] (S3: tbl_df/tbl/data.frame)
+ $ ID     : num [1:380] 1 2 3 4 5 6 7 8 9 10 ...
+ $ CAPSULE: num [1:380] 0 0 0 0 0 1 0 0 0 0 ...
+ $ AGE    : num [1:380] 65 72 70 76 69 71 68 61 69 68 ...
+ $ RACE   : num [1:380] 1 1 1 2 1 1 2 2 1 2 ...
+ $ DPROS  : num [1:380] 2 3 1 2 1 3 4 4 1 1 ...
+ $ DCAPS  : num [1:380] 1 2 2 1 1 2 2 2 1 2 ...
+ $ PSA    : num [1:380] 1.4 6.7 4.9 51.2 12.3 3.3 31.9 66.7 3.9 13 ...
+ $ VOL    : num [1:380] 0 0 0 20 55.9 0 0 27.2 24 0 ...
+ $ GLEASON: num [1:380] 6 7 6 7 6 8 7 7 7 6 ...
 ```
 
 
 :::
 :::
-
-
-You can add options to executable code like this
-
-
-::: {.cell layout-align="center"}
-::: {.cell-output .cell-output-stdout}
-
-```
-[1] 4
-```
-
-
-:::
-:::
-
-
-The `echo: false` option disables the printing of code (only output is displayed).

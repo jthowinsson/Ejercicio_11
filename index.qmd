@@ -60,23 +60,22 @@ knitr::opts_chunk$set(
 :::
 
 
-## Quarto
+# Cargar Datos
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
-
-## Running Code
-
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+## Paso 1: Carga de los datos y exploración inicial
 
 ```{r}
-1 + 1
+#| label: Carga de datos y exploración inicial
+#| message: false
+#| warning: false
+
+# Cargar paquete necesario
+library(lsm)
+
+# Cargar datos
+datos <- pros
+attach(datos)
+
+# Visualizar estructura de los datos
+str(datos)
 ```
-
-You can add options to executable code like this
-
-```{r}
-#| echo: false
-2 * 2
-```
-
-The `echo: false` option disables the printing of code (only output is displayed).
