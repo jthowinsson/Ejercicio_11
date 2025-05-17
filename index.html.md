@@ -1,0 +1,91 @@
+---
+title: "Ejercicios de Prácticas: Regresión Logística"
+format:
+  html:
+    theme: flatly           # Puedes cambiar por: cerulean, cosmo, journal, lumen, united
+    highlight: tango        # Estilo de resaltado de código
+    toc: true               # Muestra tabla de contenido
+    toc-depth: 3            # Profundidad máxima del TOC
+    toc-location: left      # Posición del TOC flotante
+    toc_float: true         # Tabla de contenido flotante
+    number-sections: true   # Numeración de secciones
+    df-print: paged         # Tablas paginadas si son largas
+    fig-cap-location: bottom # Para leyendas bajo gráficos
+    code-fold: true         # Opción para mostrar los código
+    keep-md: true           # Guarda el markdown intermedio
+---
+
+
+
+2025-05-16
+
+::: {style="text-align: center;"}
+<p>*Zamora, T. Jesús D*\[\^a\]. [info.thowinsson\@gmail.com](mailto:info.thowinsson@gmail.com){.email}</p>
+
+<p>Barranquilla-Colombia.</p>
+:::
+
+```{=html}
+<style>
+  #TOC::before {
+    content: "";
+    display: block;
+    width: 100%;
+    background-image: url('Imagen_portada.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    height: 350px; /* Ajusta la altura según tu imagen */
+  }
+</style>
+```
+
+::: {#toc-imagen-container}
+<img src="Portada2.jpg" alt="Ejercicios de Practicas" id="imagen-toc"/>
+:::
+
+
+## Quarto
+
+Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+## Running Code
+
+When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+
+::: {.cell layout-align="center"}
+
+```{.r .cell-code}
+1 + 1
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+[1] 2
+```
+
+
+:::
+:::
+
+
+You can add options to executable code like this
+
+
+::: {.cell layout-align="center"}
+::: {.cell-output .cell-output-stdout}
+
+```
+[1] 4
+```
+
+
+:::
+:::
+
+
+The `echo: false` option disables the printing of code (only output is displayed).
