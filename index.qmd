@@ -1,0 +1,333 @@
+---
+title: "Ejercicios de Prácticas: Regresión Logística"
+format:
+  html:
+    theme: flatly           # Puedes cambiar por: cerulean, cosmo, journal, lumen, united
+    highlight: tango        # Estilo de resaltado de código
+    toc: true               # Muestra tabla de contenido
+    toc-depth: 3            # Profundidad máxima del TOC
+    toc-location: left      # Posición del TOC flotante
+    toc_float: true         # Tabla de contenido flotante
+    number-sections: true   # Numeración de secciones
+    df-print: paged         # Tablas paginadas si son largas
+    fig-cap-location: bottom # Para leyendas bajo gráficos
+    code-fold: true         # Opción para mostrar los código
+    keep-md: true           # Guarda el markdown intermedio
+---
+
+```{r}
+#| labels: setup
+#| include: false
+
+knitr::opts_chunk$set(
+  echo = TRUE, 
+  warning = FALSE, 
+  message = FALSE, 
+  fig.width = 7,
+  fig.height = 5,
+  fig.align = "center"
+  )
+
+```
+
+2025-05-16
+
+::: {style="text-align: center;"}
+<p>*Zamora, T. Jesús D*\[\^a\]. [info.thowinsson\@gmail.com](mailto:info.thowinsson@gmail.com){.email}</p>
+
+<p>Barranquilla-Colombia.</p>
+:::
+
+```{=html}
+<style>
+  #TOC::before {
+    content: "";
+    display: block;
+    width: 100%;
+    background-image: url('Imagen_portada.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    height: 350px; /* Ajusta la altura según tu imagen */
+  }
+</style>
+```
+
+::: {#toc-imagen-container}
+<img src="Portada2.jpg" alt="Ejercicios de Practicas" id="imagen-toc"/>
+:::
+
+
+# Cargar Datos
+
+## Paso 1: Carga de los datos y exploración inicial
+
+```{r}
+#| label: Carga de datos y exploración inicial
+#| message: false
+#| warning: false
+
+# Cargar paquete necesario
+library(lsm)
+
+# Cargar datos
+datos <- pros
+attach(datos)
+
+# Visualizar estructura de los datos
+str(datos)
+```
+
+### Explicación:
+
+-   Primero cargamos los datos del paquete lsm y usamos attach() para acceder directamente a las variables.
+
+-   La función str() nos muestra la estructura de los datos: tipos de variables, dimensiones y primeras observaciones.
+
+-   Esto nos permite verificar que $CAPSULE$ sea binaria (0/1) y $VOL$ sea numérica.
+
+## Paso 2: Examinar las variables de interés
+
+```{r}
+#| label: Resumen Estadístico
+#| message: false
+#| warning: false
+# Resumen estadístico
+summary(CAPSULE)
+summary(VOL)
+
+# Tabla de frecuencia para CAPSULE
+table(CAPSULE)
+```
+
+### Explicación
+
+-   Examinamos las estadísticas descriptivas de nuestras variables.
+
+-   Para CAPSULE (variable dependiente), verificamos la distribución de 0s y 1s para ver si hay desbalance.
+
+-   Para VOL (variable independiente), observamos su rango, media y distribución.
+
+-   Esto nos ayuda a entender los datos antes de modelarlos.
+
+## Paso 3: Ajustar el modelo de regresión logística
+
+```{r}
+#| label: modelo de regresión logística
+#| message: false
+#| warning: false
+## Ajustar modelo de regresión logística
+modelo <- glm(CAPSULE ~ VOL, family = binomial(link = "logit"), data = datos)
+
+# Resumen del modelo
+summary(modelo)
+```
+
+### Explicación
+
+-   Usamos la función *glm()* para ajustar el modelo logístico, que es apropiado cuando nuestra variable dependiente es binaria.
+
+-   Especificamos *family = binomial(link = "logit")* para indicar que es una regresión logística.
+
+-   El resumen del modelo muestra:
+
+    -   Coeficientes estimados (intercepto y pendiente para VOL)
+
+    -   Error estándar de los coeficientes
+
+    -   Estadístico z y valor p para evaluar significancia
+
+    -   Devianza nula y residual para evaluar el ajuste global
+
+    -   AIC (Criterio de Información de Akaike)
+
+### Modelo Nulo
+
+```{r}
+modelo_nulo <- glm(formula = CAPSULE ~ 1, family = binomial(link = "logit"), data = datos)
+summary(modelo_nulo)
+```
+## Paso 4: Interpretar los coeficientes y odds ratios
+
+```{r}
+#| label: intervalos de confianza
+#| message: false
+#| warning: false
+
+# Odds ratios con intervalos de confianza
+exp(coef(modelo))
+exp(cbind(OR = coef(modelo), confint(modelo)))
+```
+
+### Explicación
+
+-   En regresión logística, los coeficientes están en escala logarítmica, por lo que aplicamos la función exponencial para obtener los odds ratios.
+-   El odds ratio para VOL indica cuánto cambian las probabilidades de CAPSULE=1 por cada unidad de aumento en VOL.
+-   Si OR \> 1: aumenta la probabilidad de CAPSULE=1 cuando aumenta VOL.
+-   Si OR \< 1: disminuye la probabilidad de CAPSULE=1 cuando aumenta VOL.
+-   Los intervalos de confianza nos indican la precisión de la estimación.
+
+## Paso 5: Evaluar la bondad de ajuste del modelo
+
+```{r}
+#| message: false
+#| warning: false
+
+# Instalar y cargar ResourceSelection si no está instalado
+if (!require("ResourceSelection")) {
+  install.packages("ResourceSelection")
+  library(ResourceSelection)
+} else {
+  library(ResourceSelection)
+}
+
+# Este código:
+# - Se asegura de que no haya errores de longitud.
+# - Ejecuta el test de Hosmer-Lemeshow correctamente.
+# - Muestra los valores clave de manera clara.
+
+# Eliminar casos con NA en las variables relevantes
+datos_completos <- na.omit(datos[, c("CAPSULE", "VOL")])
+
+# Ajustar el modelo con los datos completos
+modelo <- glm(CAPSULE ~ VOL, family = binomial, data = datos_completos)
+
+# Test de Hosmer-Lemeshow (g=10 grupos predichos)
+hoslem <- hoslem.test(datos_completos$CAPSULE, fitted(modelo), g = 10)
+print(hoslem)
+
+# Devianza, grados de libertad y p-valor
+devianza <- with(modelo, null.deviance - deviance)
+gl <- with(modelo, df.null - df.residual)
+pvalor <- with(modelo, pchisq(devianza, gl, lower.tail = FALSE))
+
+# Mostrar resultados con nombres
+cat("\nEstadístico Chi-cuadrado:", round(devianza, 4),
+    "\nGrados de libertad:", gl,
+    "\nValor-p:", round(pvalor, 4), "\n")
+```
+
+### Explicación
+
+-   El test de Hosmer-Lemeshow evalúa si las probabilidades predichas concuerdan con las observadas.
+-   Un valor p \> 0.05 sugiere un buen ajuste (no hay diferencias significativas entre valores observados y predichos).
+-   La diferencia de devianza (null.deviance - deviance) sigue una distribución Chi-cuadrado.
+-   El valor p asociado a esta diferencia nos indica si nuestro modelo es significativamente mejor que un modelo nulo (sin predictores).
+
+## Paso 6: Analizar la capacidad predictiva del modelo
+
+```{r}
+#| label: curva ROC y AUC
+#| message: false
+#| warning: false
+
+# Instalar y cargar ResourceSelection si no está instalado
+if (!require("pROC")) {
+  install.packages("pROC")
+  library(pROC)
+} else {
+  library(pROC)
+}
+
+# Filtrar los datos sin valores perdidos en las variables del modelo
+datos_completos <- na.omit(datos[, c("CAPSULE", "VOL")])
+
+# Ajustar el modelo logístico con los datos completos
+modelo <- glm(CAPSULE ~ VOL, family = binomial, data = datos_completos)
+
+# Obtener probabilidades predichas
+prob_pred <- predict(modelo, type = "response")
+
+# Calcular la curva ROC usando CAPSULE y las probabilidades predichas
+curva_roc <- roc(datos_completos$CAPSULE, prob_pred)
+
+# Graficar la curva ROC
+plot(curva_roc, main = "Curva ROC - Modelo logístico", col = "blue")
+
+# Calcular y mostrar el AUC (área bajo la curva)
+auc(curva_roc)
+```
+
+## Paso 7: Clasificación y evaluación del rendimiento
+
+```{r}
+#| label: Matricas
+#| message: false
+#| warning: false
+
+# Instalar y cargar paquetes necesarios
+paquetes_necesarios <- c("knitr")
+for (p in paquetes_necesarios) {
+  if (!require(p, character.only = TRUE)) {
+    install.packages(p)
+    library(p, character.only = TRUE)
+  } else {
+    library(p, character.only = TRUE)
+  }
+}
+
+# Asegurar que se usen los datos completos
+datos_completos <- na.omit(datos[, c("CAPSULE", "VOL")])
+
+# Ajustar modelo de regresión logística
+modelo <- glm(CAPSULE ~ VOL, family = binomial, data = datos_completos)
+
+# Obtener probabilidades predichas
+prob_pred <- predict(modelo, type = "response")
+
+# Clasificación con umbral de 0.5
+pred_class <- ifelse(prob_pred > 0.5, 1, 0)
+
+# Convertir a factores con niveles definidos
+real <- factor(datos_completos$CAPSULE, levels = c(0, 1))
+pred <- factor(pred_class, levels = c(0, 1))
+
+# Tabla de clasificación
+tabla <- table(Real = real, Predicho = pred)
+tabla_df <- as.data.frame.matrix(tabla)
+
+# Mostrar tabla con formato
+knitr::kable(tabla_df, caption = "Matriz de Confusión", align = "c")
+
+# Calcular métricas
+accuracy <- sum(diag(tabla)) / sum(tabla)
+sensitivity <- if (tabla[2,2] + tabla[2,1] > 0) tabla[2,2] / sum(tabla[2,]) else NA
+specificity <- if (tabla[1,1] + tabla[1,2] > 0) tabla[1,1] / sum(tabla[1,]) else NA
+
+# Crear tabla de métricas
+metricas <- data.frame(
+  Métrica = c("Exactitud (Accuracy)", "Sensibilidad (Recall)", "Especificidad"),
+  Valor = c(round(accuracy, 3), round(sensitivity, 3), round(specificity, 3))
+)
+
+# Mostrar métricas
+knitr::kable(metricas, caption = "Métricas del Modelo", align = "c")
+
+```
+
+## Paso 8: Visualización gráfica del modelo
+
+```{r}
+#| label: Visualización
+#| message: false
+#| warning: false
+# Gráfico de la regresión logística
+library(ggplot2)
+ggplot(datos, aes(x = VOL, y = CAPSULE)) +
+  geom_point(alpha = 0.5) +
+  stat_smooth(method = "glm", method.args = list(family = binomial)) +
+  labs(title = "Regresión logística: CAPSULE ~ VOL",
+       x = "Volumen (VOL)",
+       y = "Probabilidad de CAPSULE = 1") +
+  theme_minimal()
+```
+
+### Explicación
+
+-   Este gráfico muestra la relación entre VOL y la probabilidad de CAPSULE=1.
+-   Los puntos representan los datos observados (0 y 1).
+-   La curva azul es la función logística ajustada, mostrando cómo cambia la probabilidad predicha de CAPSULE=1 a medida que aumenta VOL.
+-   La zona sombreada representa el intervalo de confianza del 95%.
+-   Este gráfico nos permite visualizar fácilmente si existe una relación positiva o negativa entre VOL y la probabilidad de CAPSULE=1.
