@@ -217,6 +217,43 @@ Number of Fisher Scoring iterations: 4
 
     -   AIC (Criterio de Información de Akaike)
 
+### Modelo Nulo
+
+
+::: {.cell layout-align="center"}
+
+```{.r .cell-code}
+modelo_nulo <- glm(formula = CAPSULE ~ 1, family = binomial(link = "logit"), data = datos)
+summary(modelo_nulo)
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+
+Call:
+glm(formula = CAPSULE ~ 1, family = binomial(link = "logit"), 
+    data = datos)
+
+Coefficients:
+            Estimate Std. Error z value Pr(>|z|)    
+(Intercept)  -0.3945     0.1046  -3.772 0.000162 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+(Dispersion parameter for binomial family taken to be 1)
+
+    Null deviance: 512.29  on 379  degrees of freedom
+Residual deviance: 512.29  on 379  degrees of freedom
+AIC: 514.29
+
+Number of Fisher Scoring iterations: 4
+```
+
+
+:::
+:::
+
 ## Paso 4: Interpretar los coeficientes y odds ratios
 
 

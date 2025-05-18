@@ -143,6 +143,12 @@ summary(modelo)
 
     -   AIC (Criterio de Información de Akaike)
 
+### Modelo Nulo
+
+```{r}
+modelo_nulo <- glm(formula = CAPSULE ~ 1, family = binomial(link = "logit"), data = datos)
+summary(modelo_nulo)
+```
 ## Paso 4: Interpretar los coeficientes y odds ratios
 
 ```{r}
